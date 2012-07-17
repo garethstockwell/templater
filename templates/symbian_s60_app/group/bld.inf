@@ -1,0 +1,24 @@
+//
+// {{COPYRIGHT}}
+//
+// {{PROJECT}}
+// bld.inf
+//
+
+PRJ_MMPFILES
+
+// Commented out due to broken svgtbinencode in some Symbian baselines
+//gnumakefile icons.mk
+
+{{PROJECT}l}.mmp
+
+PRJ_EXPORTS
+// None
+
+PRJ_TESTMMPFILES
+// None
+
+PRJ_TESTEXPORTS
+// None
+
+

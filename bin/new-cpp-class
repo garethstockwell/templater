@@ -1,0 +1,4 @@
+#!/bin/sh
+
+templater.py -o . cpp_class $*
+

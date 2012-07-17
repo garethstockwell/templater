@@ -1,0 +1,27 @@
+//
+// {{COPYRIGHT}}
+//
+// {{PROJECT}}
+// bld.inf
+//
+
+TARGET          {{PROJECT}l}.exe
+TARGETTYPE      exe
+UID             0x100039ce {{UID}}
+CAPABILITY      none
+
+SYSTEMINCLUDE   /epoc32/include
+SYSTEMINCLUDE   /epoc32/include/platform
+
+USERINCLUDE     ../src
+
+SOURCEPATH      ../src
+SOURCE          main.cpp
+SOURCE          application.cpp
+SOURCE          renderer.cpp
+SOURCE          renderergc.cpp
+
+LIBRARY         bafl.lib
+LIBRARY         euser.lib
+LIBRARY         ws32.lib
+

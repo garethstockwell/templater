@@ -1,0 +1,20 @@
+//
+// {{COPYRIGHT}}
+//
+// {{PROJECT}}
+// bld.inf
+//
+
+PRJ_MMPFILES
+{{PROJECT}l}.mmp
+
+PRJ_EXPORTS
+// None
+
+PRJ_TESTMMPFILES
+// None
+
+PRJ_TESTEXPORTS
+// None
+
+

@@ -1,0 +1,24 @@
+//
+// {{COPYRIGHT}}
+//
+// {{PROJECT}}
+// {{PROJECT}l}_reg.rss
+//
+
+#include <appinfo.rh>
+#include <{{PROJECT}l}.rsg>
+
+UID2 KUidAppRegistrationResourceFile
+
+// Application UID
+UID3 {{UID}}
+
+RESOURCE APP_REGISTRATION_INFO
+    {
+    app_file                  = "{{PROJECT}}";
+    localisable_resource_file = "\\resource\\apps\\{{PROJECT}l}";
+    localisable_resource_id   = R_{{PROJECT}u}_LOCALISABLE_APP_INFO;
+    embeddability             = KAppNotEmbeddable;
+    newfile                   = KAppDoesNotSupportNewFile;
+    }
+

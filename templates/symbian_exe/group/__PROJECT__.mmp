@@ -1,0 +1,21 @@
+//
+// {{COPYRIGHT}}
+//
+// {{PROJECT}}
+// {{PROJECT}l}.mmp
+//
+
+TARGET			{{PROJECT}l}.exe
+TARGETTYPE		exe
+UID				0x100039ce {{UID}}
+CAPABILITY		none
+
+SYSTEMINCLUDE   \epoc32\include
+
+SOURCEPATH		..\src
+SOURCE			{{PROJECT}l}.cpp
+
+USERINCLUDE		..\src
+
+LIBRARY			euser.lib
+

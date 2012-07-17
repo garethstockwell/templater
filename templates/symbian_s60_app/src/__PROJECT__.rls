@@ -1,0 +1,4 @@
+rls_string qtn_appl_option_item "<App specific menu item>"
+rls_string qtn_app_caption_string "{{PROJECT}}"
+rls_string qtn_app_short_caption_string "{{PROJECT}}"
+

@@ -1,0 +1,15 @@
+;Languages
+&EN
+
+;Header
+#{"{{PROJECT}u}"}, (0x12345678), 1, 0, 0
+
+; Localised Vendor name
+%{"Vendor"}
+
+; Unique Vendor name
+:"Vendor"
+
+;Files to install
+"/epoc32/release/armv5/udeb/{{PROJECT}l}.exe" -"!:\sys\bin\{{PROJECT}l}.exe"
+

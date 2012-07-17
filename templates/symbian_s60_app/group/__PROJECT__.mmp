@@ -1,0 +1,50 @@
+//
+// {{COPYRIGHT}}
+//
+// {{PROJECT}}
+// {{PROJECT}l}.mmp
+//
+
+TARGET			{{PROJECT}l}.exe
+TARGETTYPE		exe
+UID				0x100039ce {{UID}}
+CAPABILITY		none
+
+SOURCEPATH		..\src
+SOURCE			{{PROJECT}l}.cpp
+SOURCE			{{PROJECT}l}app.cpp
+SOURCE			{{PROJECT}l}appui.cpp
+SOURCE			{{PROJECT}l}document.cpp
+SOURCE			{{PROJECT}l}view.cpp
+
+USERINCLUDE		..\src
+
+SYSTEMINCLUDE   \epoc32\include
+SYSTEMINCLUDE   \epoc32\include\mw
+SYSTEMINCLUDE   \epoc32\include\platform
+SYSTEMINCLUDE   \epoc32\include\platform\mw
+
+START RESOURCE	{{PROJECT}l}.rss
+HEADER
+TARGETPATH	\\resource\\apps
+end
+
+START RESOURCE {{PROJECT}l}_reg.rss
+#ifdef WINSCW
+TARGETPATH    \private\10003a3f\apps
+#else
+TARGETPATH    \private\10003a3f\import\apps
+#endif
+END
+
+LIBRARY		euser.lib
+LIBRARY		apparc.lib
+LIBRARY		efsrv.lib
+LIBRARY		cone.lib
+LIBRARY		avkon.lib
+LIBRARY		eikcoctl.lib
+LIBRARY		eikcore.lib
+LIBRARY		ws32.lib
+LIBRARY		egul.lib
+LIBRARY		fbscli.lib
+

@@ -1,0 +1,14 @@
+//
+// {{COPYRIGHT}}
+//
+// {{PROJECT}}
+// {{PROJECT}l}.iby 
+//
+
+#ifndef __{{PROJECT}u}_IBY__
+#define __{{PROJECT}u}_IBY__
+
+file=ABI_DIR\udeb\{{PROJECT}l}.exe sys\bin\{{PROJECT}l}.exe 
+
+#endif // __{{PROJECT}u}_IBY__
+

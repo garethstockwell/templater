@@ -1,0 +1,19 @@
+//
+// {{COPYRIGHT}}
+//
+// {{PROJECT}}
+// bld.inf
+//
+
+PRJ_MMPFILES
+{{PROJECT}l}.mmp
+
+PRJ_EXPORTS
+{{PROJECT}l}.iby /epoc32/rom/include/{{PROJECT}l}.iby
+
+PRJ_TESTMMPFILES
+// None
+
+PRJ_TESTEXPORTS
+// None
+

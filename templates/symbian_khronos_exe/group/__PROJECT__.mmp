@@ -1,0 +1,34 @@
+//
+// {{COPYRIGHT}}
+//
+// {{PROJECT}}
+// bld.inf
+//
+
+TARGET          {{PROJECT}l}.exe
+TARGETTYPE      exe
+UID             0x100039ce 0x12345678
+CAPABILITY      none
+
+SYSTEMINCLUDE   /epoc32/include
+SYSTEMINCLUDE   /epoc32/include/platform
+SYSTEMINCLUDE   /epoc32/include/stdapis
+
+USERINCLUDE     ../src
+
+SOURCEPATH      ../src
+SOURCE          main.cpp
+SOURCE          application.cpp
+SOURCE          renderer.cpp
+SOURCE          rendereregl.cpp
+SOURCE          gles1cube.cpp
+SOURCE          vgline.cpp
+
+LIBRARY         bafl.lib
+LIBRARY         euser.lib
+LIBRARY         libc.lib
+LIBRARY         ws32.lib
+LIBRARY         libegl.lib
+LIBRARY         libopenvg.lib
+LIBRARY         libgles_cm.lib
+

@@ -1,0 +1,13 @@
+//
+// {{COPYRIGHT}}
+//
+// {{PROJECT}}
+// {{PROJECT}l}.hrh
+//
+
+enum T{{PROJECT}}Commands
+    {
+    E{{PROJECT}}CmdA	= 1000,
+    E{{PROJECT}}CmdB
+    };
+

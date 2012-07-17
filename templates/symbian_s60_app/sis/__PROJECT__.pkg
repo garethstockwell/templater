@@ -1,0 +1,26 @@
+;Languages
+&EN
+
+;Header
+#{"{{PROJECT}}"}, ({{UID}}), 1, 0, 0
+
+; Localised Vendor name
+%{"Vendor"}
+
+; Unique Vendor name
+:"Vendor"
+
+; Default HW/platform dependencies
+[0x101F7961],0,0,0,{"S60ProductID"}
+[0x102032BE],0,0,0,{"S60ProductID"}
+[0x102752AE],0,0,0,{"S60ProductID"}
+[0x1028315F],0,0,0,{"S60ProductID"}
+
+;Files to install
+"/epoc32/release/armv5/urel/{{PROJECT}l}.exe"                      -"!:\sys\bin\{{PROJECT}l}.exe"
+"/epoc32/data/z/resource/apps/{{PROJECT}l}.rsc"                    -"!:\resource\apps\{{PROJECT}l}.rsc"
+"/epoc32/data/Z/private/10003a3f/import/apps/{{PROJECT}l}_reg.rsc" -"!:\private\10003a3f\import\apps\{{PROJECT}l}_reg.rsc"
+
+; Commented out due to broken svgtbinencode in some Symbian baselines
+;"/epoc32/data/z/resource/apps/{{PROJECT}l}_icon.mif"                  -"!:\resource\apps\{{PROJECT}l}_icon.mif"
+
