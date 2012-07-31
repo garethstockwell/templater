@@ -7,6 +7,13 @@
 # starting [CHANGE]
 
 #------------------------------------------------------------------------------
+# Imports
+#------------------------------------------------------------------------------
+
+source $(dirname $0)/functions.sh
+
+
+#------------------------------------------------------------------------------
 # Constants
 #------------------------------------------------------------------------------
 
@@ -21,13 +28,6 @@ ARGUMENTS='source dest'
 # Variables populated by command-line
 #------------------------------------------------------------------------------
 
-# Options
-# [CHANGE] add defaults for any additional options
-opt_help=
-opt_version=
-opt_verbosity=normal
-opt_dryrun=no
-
 for arg in $ARGUMENTS; do
 	eval "arg_$arg="
 done
@@ -36,55 +36,6 @@ done
 #------------------------------------------------------------------------------
 # Functions
 #------------------------------------------------------------------------------
-
-# Print an error message and exit
-function error()
-{
-	echo -e "\nError: $*"
-	if [[ "$opt_dryrun" != yes ]]; then
-		exit 1
-	fi
-}
-
-function warn()
-{
-	echo "Warning: $*"
-}
-
-function usage_error()
-{
-	echo -e "Error: $*\n"
-	print_usage
-	exit 1
-}
-
-# Execute shell command; abort script if command fails
-function execute()
-{
-	cmd="$*"
-	[[ "$opt_verbosity" != silent ]] && echo -e "\n$cmd"
-	if [[ "$opt_dryrun" != yes ]]; then
-		$cmd
-		r=$?
-		[[ "$r" != 0 ]] && error Execution of \"$cmd\" failed: exit code $r
-	fi
-}
-
-function print_rule()
-{
-	[[ "$opt_verbosity" != silent ]] && \
-		echo '----------------------------------------------------------------------'
-}
-
-function print_banner()
-{
-	if [[ "$opt_verbosity" != silent ]]; then
-		echo
-		print_rule
-		echo $*
-		print_rule
-	fi
-}
 
 function print_usage()
 {
@@ -122,7 +73,9 @@ EOF
 function parse_command_line()
 {
 	eval set -- $*
-	for token in "$@"; do
+	parse_standard_arguments "$@"
+
+	for token in $unused_args; do
 		# If the previous option needs an argument, assign it.
 		if [[ -n "$prev" ]]; then
 			eval "$prev=\$token"
@@ -133,23 +86,6 @@ function parse_command_line()
 		optarg=`expr "x$token" : 'x[^=]*=\(.*\)'`
 
 		case $token in
-			# Options
-			-h | -help | --help | -usage | --usage)
-				opt_help=yes
-				;;
-			-q | -quiet | --quiet | -silent | --silent)
-				opt_verbosity=silent
-				;;
-			-v | -verbose | --verbose)
-				opt_verbosity=verbose
-				;;
-			-n | -dry-run | --dry-run | -dryrun | --dry-run)
-				opt_dryrun=yes
-				;;
-			-V | -version | --version)
-				opt_version=yes
-				;;
-
 			# Example of an option which takes an argument
 			# [CHANGE] replace the following with real argument-taking
 			# options
@@ -175,6 +111,7 @@ function parse_command_line()
 
 			# Normal arguments
 			*)
+			echo "TOKEN[$token]"
 				local arg_used=
 				for arg in $ARGUMENTS; do
 					if [[ -z `eval "echo \\$arg_$arg"` ]]; then
