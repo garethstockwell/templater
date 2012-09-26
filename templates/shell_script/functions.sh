@@ -42,12 +42,11 @@ function usage_error()
 # Execute shell command; abort script if command fails
 function execute()
 {
-	cmd="$*"
-	[[ "$opt_verbosity" != silent ]] && echo $cmd
+	[[ "$opt_verbosity" != silent ]] && echo "$@"
 	if [[ "$opt_dryrun" != yes ]]; then
-		$cmd
+		"$@"
 		r=$?
-		[[ "$r" != 0 ]] && error Execution of \"$cmd\" failed: exit code $r
+		[[ "$r" != 0 ]] && error Execution of \"$@\" failed: exit code $r
 	fi
 }
 
