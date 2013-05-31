@@ -89,7 +89,7 @@ function print_banner()
 	fi
 }
 
-function parse_standard_arguments()
+function parse_standard_args()
 {
 	unused_args=
 	eval set -- $*
@@ -108,22 +108,26 @@ function parse_standard_arguments()
 			-h | -help | --help | -usage | --usage)
 				opt_help=yes
 				;;
+
 			-q | -quiet | --quiet | -silent | --silent)
 				opt_verbosity=silent
 				;;
+
 			-v | -verbose | --verbose)
 				opt_verbosity=verbose
 				;;
+
 			-n | -dry-run | --dry-run | -dryrun | --dry-run)
 				opt_dryrun=yes
 				;;
+
 			-V | -version | --version)
 				opt_version=yes
 				;;
 
 			*)
 				[[ -n $unused_args ]] && unused_args="$unused_args "
-				unused_args=$unused_args$token
+				unused_args="$unused_args\"$token\""
 				;;
 		esac
 	done
