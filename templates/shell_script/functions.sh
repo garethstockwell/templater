@@ -13,6 +13,29 @@ opt_help=
 opt_verbosity=normal
 opt_version=
 
+# Positional arguments
+for arg in $SCRIPT_ARGUMENTS; do
+	eval "arg_$arg="
+done
+
+
+#------------------------------------------------------------------------------
+# Constants
+#------------------------------------------------------------------------------
+
+USAGE_HEADER="$SCRIPT_NAME
+
+Usage: $0 [options] $SCRIPT_ARGUMENTS
+
+Default values for options are specified in brackets."
+
+USAGE_STANDARD_OPTIONS="Options:
+    -h, --help, --usage     Display this help and exit
+    -n, --dry-run           Do not execute any shell commands
+    -q, --quiet, --silent   Suppress output
+    -v, --verbose           Verbose output
+    -V, --version           Display version information and exit"
+
 
 #------------------------------------------------------------------------------
 # Functions
@@ -103,6 +126,63 @@ function parse_standard_arguments()
 				unused_args=$unused_args$token
 				;;
 		esac
+	done
+}
+
+function print_version()
+{
+	cat << EOF
+$SCRIPT_NAME version $SCRIPT_VERSION
+EOF
+}
+
+function handle_arg()
+{
+	local token=$1
+	local arg_used=
+	local arg=
+	for arg in $SCRIPT_ARGUMENTS; do
+		if [[ -z `eval "echo \\$arg_$arg"` ]]; then
+			eval "arg_$arg=$token"
+			arg_used=1
+			break
+		fi
+	done
+	[[ -z "$arg_used" ]] && warn "Additional argument '$token' ignored"
+}
+
+function check_sufficient_args()
+{
+	# Check that required arguments have been provided
+	# TODO: we only really need to check the last argument: is there a neater way,
+	# other than using a loop?
+	local args_supplied=1
+	for arg in $SCRIPT_ARGUMENTS; do
+		if [[ -z `eval "echo \\$arg_$arg"` ]]; then
+			args_supplied=
+			break
+		fi
+	done
+	[[ -z "$args_supplied" ]] && usage_error 'Insufficient arguments provided'
+}
+
+function print_standard_summary()
+{
+	print_banner 'Summary'
+	local total_num_dots=40
+	cat << EOF
+
+Verbosity ............................... $opt_verbosity
+Dry run ................................. $opt_dryrun
+
+EOF
+	for arg in $SCRIPT_ARGUMENTS; do
+		local arg_len=${#arg}
+		let num_dots=total_num_dots-arg_len
+		local value=`eval "echo \\$arg_$arg"`
+		echo -n "$arg "
+		awk "BEGIN{for(c=0;c<$num_dots;c++) printf \".\"}"
+		echo " $value"
 	done
 }
 
