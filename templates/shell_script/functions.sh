@@ -71,6 +71,7 @@ function execute()
 		r=$?
 		[[ "$r" != 0 ]] && error Execution of \"$@\" failed: exit code $r
 	fi
+	return $?
 }
 
 function print_rule()
