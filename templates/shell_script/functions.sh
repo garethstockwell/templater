@@ -65,13 +65,14 @@ function usage_error()
 # Execute shell command; abort script if command fails
 function execute()
 {
+	local r=0
 	[[ "$opt_verbosity" != silent ]] && echo "$@"
 	if [[ "$opt_dryrun" != yes ]]; then
 		"$@"
 		r=$?
 		[[ "$r" != 0 ]] && error Execution of \"$@\" failed: exit code $r
 	fi
-	return $?
+	return $r
 }
 
 function print_rule()
